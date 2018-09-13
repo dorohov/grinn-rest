@@ -1,0 +1,34 @@
+{
+	"contacts":{
+		"name":"ТМК Гринн Рестораны",
+		"domain":"restaurants.tmk-grinn.ru",
+		"domain_link":"http://restaurants.tmk-grinn.ru/",
+		"color":"#183883",
+		"agreement_page":"agreement",
+		"copyright":"ОкнаСтрой",
+		"email":"info@tmk.grinn-corp.ru",
+		"phone":"8 800 700 7500",  
+		"phone_tel":"+78007007500",   
+		"clock":"<p>Пн-Пт: 8:00-17:00. Перерыв 13:00-14:00</p><p>Сб-Вс: выходной</p>",
+		"address":"Орел, Орловская обл., Кромское шоссе, д.4"
+	},
+	"soc":{
+		"vk":"https://vk.com/",
+		"fb":"https://www.facebook.com/",
+		"ok":"https://ok.ru/group/",
+		"tw":"https://twitter.com/",
+		"inst":"https://www.instagram.com/"
+	},
+	"page":{
+		"index":"/",		
+		"404":"/404.html",
+		"style":"/style.html",
+		"agreement":"/agreement.html"
+	},	                           
+	"url-path-css":"/css",
+	"url-path-img":"/img",
+	"url-path-js":"/js",
+	"url-path-plugins":"/plugins",
+	"url-path-favicon":"/favicon",
+	"url-path-docs":"/docs"
+}

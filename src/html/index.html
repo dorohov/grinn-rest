@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru-RU"> 
+	<head>
+		[[azbntple 
+			tpl="/src/block/site/default/head/.html" 
+			title=" "
+			description=" "
+		]] 		
+	</head>
+	<body> 
+		[[azbntple 
+			tpl="/src/block/site/default/navbar/navbar.html"
+			navbar_prefix="navbar__"
+			navbar_mod="is--scroll"
+		]] 
+		[[azbntple 
+			tpl="/src/block/site/default/header/panel.html"
+			block_prefix="header-block__"
+			block_heading="Рестораны ТМК Гринн"
+			block_id="block-header"
+		]]	
+		[[azbntple  
+			tpl="/src/block/site/page/index-rest.html"
+			content_prefix="content-block__"
+			content_mod="is--rest-index"
+			content_id="block-rest"
+		]]
+		<div class="content-block__panel">
+			[[azbntple  
+				tpl="/src/block/site/page/index-event.html"
+				content_prefix="content-block__"  
+				content_mod="is--event-index"
+				content_id="block-event"
+				content_bg="{{url-path-img}}/temp/bg-event.jpg"
+				block_heading_mod="is--index-heading"
+				block_heading_level="h2"
+				block_heading="События"
+			]]	
+			[[azbntple  
+				tpl="/src/block/site/page/index-gallery.html"
+				content_prefix="content-block__"   
+				content_mod="is--gallery-index"
+				content_id="block-gallery"
+				block_heading_mod="is--index-heading"
+				block_heading_level="h2"
+				block_heading="Фотогалерея"
+			]]
+			[[azbntple  
+				tpl="/src/block/site/default/bg/card.html"
+				block_prefix="bg-block__"
+				block_mod="is--grapes-660x660"
+				block_bg="bg-grapes-660x660.png"
+			]]	
+		</div>
+		[[azbntple  
+			tpl="/src/block/site/default/contacts/panel.html"
+			content_prefix="kontakty-panel__"       
+			content_mod="  "
+			content_id="block-contacts"  
+			block_heading_mod="is--index-contacts"
+			block_heading_level="h2"
+			block_heading="Контакты"  
+		]]		
+		[[azbntple 
+			tpl="/src/block/site/default/footer/.html"
+			footer_prefix="footer__" 
+		]]		
+		[[azbntple tpl="/src/block/site/default/script/script.html" ]]
+		[[azbntple tpl="/src/block/site/default/modals/include.html" ]]
+		[[azbntple tpl="/src/block/site/default/script/googleMap.html" ]]
+	</body>
+</html>

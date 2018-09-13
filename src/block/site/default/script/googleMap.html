@@ -1,0 +1,246 @@
+<!-- <script src="{{url-path-js}}/google-map.js"></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANLxdBSU8fJGR5IzCxzgTbVTdgOsJXcq4&callback=omap__initMap"
+    async defer></script>
+<script>
+var SiteData = {
+	projects : {
+		residential : {
+			1 : {
+				id : '1',
+				title : 'Мезонин',
+				note : 'Кухня мирового уровня по стандартам обладателя 3-х «Мишленовских звезд» итальянца Джузеппе Ди Дио',
+				phone_tel : '+74862201222',
+				phone : '+7 (4862) 20-12-22',
+				site : 'http://frontend.dorohovdesign.ru/grinn-mezonin/',
+				lat : parseFloat('52.920932'),
+				lng : parseFloat('36.011484'),
+				marker : null,
+				infowindow : null,
+			},
+			2 : {
+				id : '2',
+				title : 'Фьюжн',
+				note : '4 кухни мира в одном ресторане: американская, узбекская, украинская и японская',
+				phone_tel : '+74862201222',
+				phone : '+7 (4862) 20-12-22',
+				site : 'http://frontend.dorohovdesign.ru/grinn-fuzhn/',
+				lat : parseFloat('52.920416'),
+				lng : parseFloat('36.010658'),
+				marker : null,
+				infowindow : null,
+			},
+			3 : {
+				id : '3',
+				title : 'Пивоварня Грин Beer',
+				note : 'Немецкая кухня и 4 оригинальных сорта пива от совственной пивоварни',
+				phone_tel : '+74862201222',
+				phone : '+7 (4862) 20-12-22',
+				site : 'http://frontend.dorohovdesign.ru/grinn-grinnbeer/',
+				lat : parseFloat('52.921056'),
+				lng : parseFloat('36.011804'),
+				marker : null,
+				infowindow : null,
+			},
+			4 : {
+				id : '4',
+				title : 'Ресторан торжеств',
+				note : 'Русская и европейская кухня от Национальной гильдии шеф-поваров в роскоши имперского дворца',
+				phone_tel : '+74862201222',
+				phone : '+7 (4862) 20-12-22',
+				site : 'http://frontend.dorohovdesign.ru/grinn-torgestv/',
+				lat : parseFloat('52.921693'),
+				lng : parseFloat('36.011190'),
+				marker : null,
+				infowindow : null,
+			},
+			5 : {
+				id : '5',
+				title : 'Ресторан Гринн',
+				note : 'Изысканные блюда европейской кухни в ресторане сдержанного и строгого стиля',
+				phone_tel : '+74862201222',
+				phone : '+7 (4862) 20-12-22',
+				site : 'http://frontend.dorohovdesign.ru/grinn-grinn/',
+				lat : parseFloat('52.921423'),
+				lng : parseFloat('36.012194'),
+				marker : null,
+				infowindow : null,
+			},
+			6: {
+				id : '6',
+				title : 'Боярское',
+				note : 'Стилизация старинной усадьбы, более 340 посадочных мест  на территории 2 830 кв. м',
+				phone : '+7 (4862) 20-12-22',
+				site : 'http://frontend.dorohovdesign.ru/grinn-boyarskoe/',
+				lat : parseFloat('52.922280'),
+				lng : parseFloat('36.013400'),
+				marker : null,
+				infowindow : null,
+			},
+			
+		}
+	},
+	infowindows : [],
+}
+
+</script>
+<script>
+
+var omap__map, omap__mapElement;
+
+function in_array(value, array) {
+	for(var i = 0; i < array.length; i++) {
+		if(array[i] == parseInt(value)) return true;
+	}
+	return false;
+}
+
+var azbn_p = 'azbn.';
+
+var SS = {
+	set : function(id,value) {sessionStorage.setItem(azbn_p + id, value);},
+	get : function(id) {var item = sessionStorage.getItem(azbn_p + id);if(typeof item !== 'undefined' && item != null) {return item;} else {return null;}},
+	remove : function(id) {sessionStorage.removeItem(azbn_p + id);},
+	clear : function() {sessionStorage.clear();},
+	obj2s : function(id,obj2save) {this.set(id, JSON.stringify(obj2save));},
+	s2obj : function(id) {var item = this.get(id);if(typeof item !== 'undefined' && item != null) {return JSON.parse(item);} else {return null;}},
+};
+function omap__initMap() {	
+	var center = {
+		lat : 52.9214,
+		lng : 36.0119,
+	},
+	zoom_map = 18,
+	mapOptions = {
+		zoom : zoom_map,
+		center : new google.maps.LatLng(center.lat, center.lng),
+		scrollwheel : false,	
+		styles : [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#3e606f"},{"weight":2},{"gamma":0.84}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"weight":0.6},{"color":"#1a3541"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#2c5a71"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#406d80"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#2c5a71"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#29768a"},{"lightness":-37}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#406d80"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#193341"}]}]	 
+	};
+	
+	omap__mapElement = document.getElementById('map-google');
+	
+	omap__map = new google.maps.Map(omap__mapElement, mapOptions);	
+	var CMS__TPL_PATH = '/wp-content/themes/azbn7theme';  
+	//var CMS__TPL_PATH = '/grinn-rest';  
+	//var CMS__TPL_PATH = '';
+	var getInfoWindowHTML = function(point) {
+		
+		var container = $('<div/>', {
+			'class' : 'gmap__container',
+		});
+		
+		var title = $('<div/>', {
+			'class' : 'gmap__heading',
+			'html' : point.title,
+		}).appendTo(container);
+		
+		var info_note = $('<div/>', {
+			'class' : 'gmap__note',
+			'html' : point.note,
+		}).appendTo(container);
+		
+		var info_phone = $('<div/>', {
+			'class' : 'gmap__phone',
+			'html' : '<a href="tel:'+point.phone_tel+'"><span class="gmap__phone-icon"><svg class="icon-svg icon-contacts-tel" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+CMS__TPL_PATH+'/img/svg/sprite.svg#contacts-tel"></use></svg></span>'+point.phone+'</a>',
+		}).appendTo(container);
+		
+		var info_btn = $('<div/>', {
+			'class' : 'gmap__btn',
+			'html' : '<a href="'+point.site+'" class="btn__item"><span class="btn__name">Подробнее</span></a>',
+		}).appendTo(container);
+				
+		return container.get(0).outerHTML;
+		
+	}
+	
+	var addMarkerToMap = function(point, to) {
+		
+		setTimeout(function() {
+			var icon_svg = {   
+				path: "M22.6853 0.67753C11.3128 1.07718 1.86214 9.9669 0.770772 21.3088L0.770642 21.3102C0.54775 23.5778 0.676554 25.7763 1.07624 27.8838L1.07907 27.8987L1.08102 27.9124L1.08178 27.9174C1.08258 27.9225 1.08402 27.9316 1.08619 27.9445C1.09054 27.9703 1.09784 28.0116 1.10883 28.068C1.1308 28.1808 1.16756 28.354 1.22512 28.5846L1.2271 28.5926L1.22889 28.6006C1.58046 30.1733 2.10848 31.7019 2.7668 33.1383L2.77107 33.1476L2.77505 33.1571C5.08954 38.6491 10.4732 47.9133 22.6142 58.0184L22.6165 58.0203C23.1171 58.4408 23.8596 58.4454 24.3778 58.0176C36.518 47.9251 41.9016 38.6612 44.2282 33.1448L44.233 33.1334L44.2382 33.1222C44.9062 31.6903 45.4221 30.1757 45.774 28.5895L45.7752 28.5842C45.8283 28.354 45.8664 28.1749 45.891 28.0544C45.9033 27.9942 45.9123 27.9487 45.918 27.9187L45.9243 27.8857L45.9257 27.8782L45.9271 27.8706C46.1971 26.4596 46.338 25.0134 46.338 23.5316C46.338 10.6229 35.668 0.219026 22.6853 0.67753ZM24.8 58.5282C24.0391 59.1573 22.9399 59.1573 22.1911 58.5282C9.96778 48.3546 4.52045 39.0037 2.16517 33.4148C1.48878 31.939 0.945259 30.3664 0.582908 28.7454C0.462125 28.2615 0.42589 28.0075 0.42589 28.0075C0.0152261 25.8421 -0.117636 23.58 0.111853 21.2453C1.23514 9.57165 10.9582 0.426315 22.6621 0.0150165C36.0208 -0.456767 47 10.2491 47 23.5316C47 25.0558 46.8551 26.5437 46.5773 27.9954C46.5773 27.9954 46.5289 28.2615 46.4202 28.7333C46.0579 30.3664 45.5264 31.9269 44.838 33.4027C42.4706 39.0157 37.0233 48.3667 24.8 58.5282Z M22.7801 3.32745C12.7246 3.68329 4.37099 11.5955 3.40591 21.6952C3.20875 23.7151 3.3229 25.6722 3.67572 27.5456C3.67572 27.5456 3.70685 27.7654 3.81062 28.1841C4.12194 29.5865 4.58891 30.9471 5.17003 32.2239C7.19358 37.0592 11.8737 45.1494 22.3754 53.9512C23.0188 54.4955 23.9631 54.4955 24.6169 53.9512C35.1186 45.1598 39.7987 37.0697 41.8326 32.2135C42.4241 30.9366 42.8807 29.5865 43.192 28.1736C43.2854 27.7654 43.3269 27.5352 43.3269 27.5352C43.5656 26.2793 43.6901 24.992 43.6901 23.6732C43.6901 12.1816 34.2572 2.91927 22.7801 3.32745ZM23.4961 33.8043C18.0792 33.8043 13.6897 29.3772 13.6897 23.914C13.6897 18.4507 18.0792 14.0236 23.4961 14.0236C28.913 14.0236 33.3025 18.4507 33.3025 23.914C33.3025 29.3772 28.913 33.8043 23.4961 33.8043Z", 
+				fillColor: '#5BDDF9',
+				strokeColor: '#000000',
+				fillOpacity: 1,
+				anchor: new google.maps.Point(23,59),
+				strokeWeight: 0,
+				scale: 1,
+			};
+			point.marker = new google.maps.Marker({
+				position : {
+					lat : point.lat,
+					lng : point.lng,
+				},
+				map : omap__map,
+				icon : icon_svg,
+				//title : point.title,
+			});
+			
+			point.infowindow = new google.maps.InfoWindow({
+				content : getInfoWindowHTML(point),
+				//pixelOffset : 15,
+			});
+			
+			SiteData.infowindows.push(point.infowindow);
+			
+			point.marker.addListener('mouseover', function() {
+				
+				for(var __i = 0; __i < SiteData.infowindows.length; __i++) {
+					SiteData.infowindows[__i].close();
+				}				
+				point.infowindow.open(omap__map, point.marker);
+				
+			});
+			
+			point.marker.addListener('click', function() {
+				point.infowindow.close();
+			});
+			
+		}, to * 99);
+		
+	};
+	
+	var _j = 0;
+	
+	for(var i in SiteData.projects.residential) {
+		
+		var point = SiteData.projects.residential[i];
+		
+		_j++;
+		
+		if(point.lat && point.lng) {
+			
+			addMarkerToMap(point, _j);
+			
+		}
+		
+	}
+	
+	$(window).resize(function() {
+		
+		var el = $(omap__mapElement);
+		var coord = el.attr('data-coord');
+		var _c;
+		
+		if(coord && coord != '') {
+			
+			_c = coord.split(',');
+			
+			_c = {
+				lat : _c[0],
+				lng : _c[1],
+			};
+			
+		} else {
+			
+			_c = center;
+			
+		}
+		
+		google.maps.event.trigger(omap__map, 'resize');
+		omap__map.setCenter(new google.maps.LatLng(_c.lat, _c.lng));
+		
+	});
+	
+	
+}
+</script>

@@ -1,0 +1,77 @@
+.gmap__{
+	&container{
+		padding: 10px;
+		color: @black-21;
+		font-size: @b-fs;
+		line-height: @b-lh;
+		font-family: @b-ff;
+		font-weight: 400;
+		@media @media-point-screen {
+			padding: 1.6vw 2.9vw;
+		}
+	}
+	&heading{
+		font-family: @b-ff-2;
+		.heading3();
+		margin-bottom: 10px;
+	}
+	&note{
+		font-size: @b-fs - 2;
+		line-height: @b-lh - 4;
+		max-width: 200px;
+		margin-bottom: 20px;
+		@media @media-point-notsmart {
+			font-size: @b-fs;
+			line-height: @b-lh - 2;
+			max-width: 400px;
+		}
+	}
+	&phone{
+		position: relative;
+		padding-left: 40px;
+		color: @b-color-a;
+		margin-bottom: 30px;
+	}
+	&phone-icon{
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		width: 32px;
+		height: 32px;
+		color: @b-color-a-hover;
+		svg{
+			display: block;
+			width: 100%;
+			height: 100%;
+			fill: currentColor;
+		}
+	}
+	&btn{
+		.btn__item{
+			font-family: @b-ff;
+			font-weight: 400;
+		}
+	}
+}
+.kontakty-panel__{
+	&block{	
+		position: relative;
+	}
+	&map{
+		width: 100%;
+		height: 300px;
+		@media @media-point-xs {
+			height: 250px;
+		}
+		@media @media-point-tablet {
+			height: 500px;
+		}
+		@media @media-point-screen {
+			max-height: 735px;
+			min-width: 500px;
+			height: 70vh;
+		}
+	}
+}
