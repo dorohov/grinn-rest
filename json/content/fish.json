@@ -22,6 +22,7 @@
 	"page":{
 		"index":"/",		
 		"404":"/404.html",
+		"boyarskoe":"/boyarskoe.html",
 		"style":"/style.html",
 		"agreement":"/agreement.html"
 	},	                           
